@@ -7,7 +7,7 @@ class Muhammadali extends StatefulWidget {
 }
 
 class _MuhammadaliState extends State<Muhammadali> {
-  TextEditingController te = TextEditingController();
+  
   int raqam = 0;
   String txt = "Subhanalloh/سبحانله";
   int sont = 1;
@@ -22,9 +22,7 @@ class _MuhammadaliState extends State<Muhammadali> {
         txt = "Allohu akbar/الله أكبر";
       } else if (raqam - 99 == 0) {
         txt = "La Ilaha Illalloh/لا إله اللله";
-      } else if (sont == 2 && raqam - 110 == 0) {
-        txt = te.text.isNotEmpty ? te.text : txt;
-      }
+      } 
     });
   }
 
@@ -41,6 +39,10 @@ class _MuhammadaliState extends State<Muhammadali> {
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back,color: Colors.white,)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Text(
@@ -87,58 +89,6 @@ class _MuhammadaliState extends State<Muhammadali> {
             ],
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) => Container(
-                    child: AlertDialog(
-                      backgroundColor: Colors.grey.shade900,
-                      title: Text(
-                        "Qo`shimcha Tasbehlar Kiriting",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      content: Container(
-                        width: double.infinity,
-                        height: 100,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Diqqat: Kiritilgan tasbehlar 110(bir yuzi o`n)dan keyin ko`rinadi",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            TextField(
-                              controller: te,
-                              style: TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            sont = 2;
-                            Navigator.pop(context);
-                          },
-                          child: Text("OK"),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text("Cencel"),
-                        ),
-                      ],
-                    ),
-                  ));
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
